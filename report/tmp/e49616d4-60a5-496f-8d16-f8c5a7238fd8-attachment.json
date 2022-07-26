@@ -1,0 +1,1 @@
+"{'Code': {'jsonpath': '$.code', 'type': '==', 'value': '400', 'AssertType': None}, 'Result': {'jsonpath': '$.message', 'type': '==', 'value': '当前排放源类型下关联了排放源，不可被删除', 'AssertType': None}}"

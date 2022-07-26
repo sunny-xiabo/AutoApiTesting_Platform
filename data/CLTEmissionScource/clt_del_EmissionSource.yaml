@@ -1,0 +1,327 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 排放源管理模块
+  allureStory: 排放源删除接口
+
+del_emissionsource_01:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: DELETE
+  # 用例说明
+  detail: 校验正常删除排放源
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    id: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.id
+          replace_key: $.data.id
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+  setup_sql:
+    - SELECT * FROM emission_source WHERE emission_type_name='Fire n' ORDER BY RANDOM() DESC LIMIT 1;
+
+del_emissionsource_02:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: DELETE
+  # 用例说明
+  detail: 校验删除排放源id为空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    id: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: false
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.id
+          replace_key: $.data.id
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+  setup_sql:
+    - SELECT * FROM emission_source WHERE emission_type_name='Fire n' ORDER BY RANDOM() DESC LIMIT 1;
+
+del_emissionsource_03:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: DELETE
+  # 用例说明
+  detail: 校验删除排放源id为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    id: -1
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: false
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.id
+          replace_key: $.data.id
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+  setup_sql:
+    - SELECT * FROM emission_source WHERE emission_type_name='Fire n' ORDER BY RANDOM() DESC LIMIT 1;
+
+del_emissionsource_04:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: DELETE
+  # 用例说明
+  detail: 校验删除排放源id为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    id: ${{get_country()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: false
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.id
+          replace_key: $.data.id
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+  setup_sql:
+    - SELECT * FROM emission_source WHERE emission_type_name='Fire n' ORDER BY RANDOM() DESC LIMIT 1;
+
+del_emissionsource_05:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: DELETE
+  # 用例说明
+  detail: 校验删除排放源id为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    id: ${{get_element()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: false
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.id
+          replace_key: $.data.id
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+  setup_sql:
+    - SELECT * FROM emission_source WHERE emission_type_name='Fire n' ORDER BY RANDOM() DESC LIMIT 1;
+
+del_emissionsource_06:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: DELETE
+  # 用例说明
+  detail: 校验删除排放源id为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    id: ${{get_punc()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: false
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.id
+          replace_key: $.data.id
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+  setup_sql:
+    - SELECT * FROM emission_source WHERE emission_type_name='Fire n' ORDER BY RANDOM() DESC LIMIT 1;
+
+
+
+

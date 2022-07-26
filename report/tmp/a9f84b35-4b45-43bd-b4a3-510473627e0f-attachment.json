@@ -1,0 +1,1 @@
+"{'emissionTypeName': '电力', 'emissionSourceName': '其他', 'unit': 'mol', 'factor': '1.93', 'factorUnit': 'S', 'convertFactor': '1.19', 'chilledWaterFactor': -1, 'inputDeadline': 1, 'inputFrequency': '45', 'conditionType': None, 'thresholdValue': None}"

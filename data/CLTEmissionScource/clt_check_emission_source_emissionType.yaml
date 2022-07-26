@@ -1,0 +1,103 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 排放源管理模块
+  allureStory: 校验是否可以删除排放源类型接口
+
+check_emission_source_emissionType_01:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/emission_type/check/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验可以删除排放源类型
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 排放源类型
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: get_emission_source_emissionType
+      dependent_data:
+        # 提取接口响应的参数
+        - dependent_type: response
+          jsonpath: $.result[-1:].emissionTypeName
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    Result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+
+
+
+check_emission_source_emissionType_02:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/emission_type/check/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验不可以删除排放源类型
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: ${replace_key}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: get_emission_source_emissionType
+      dependent_data:
+        # 提取接口响应的参数
+        - dependent_type: response
+          jsonpath: $.result[0].emissionTypeName
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    Result:
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:

@@ -1,0 +1,75 @@
+# 公共参数
+case_common:
+  allureEpic: *
+  allureFeature: *
+  allureStory: *
+
+testcase_name:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: ~
+  # 请求方法 GET POST
+  method: ~
+  # 用例说明
+  detail: ~
+  # headers 信息头
+  headers:
+    Content-Type: multipart/form-data;
+    # 这里cookie的值，写的是存入缓存的名称
+    cookie: $cache{login_cookie}
+  # 请求的数据，是 params 还是 json、或者file、data
+  # params URL参数拼接的形式
+  # json post请求，请求参数是JSON格式
+  # file 文件上传，注意两个地方，主要是用例中的 requestType 和 filename 字段
+        # requestType: 上传文件，我们需要更改成 file
+        # file: 如果是文件上传的话，就不需要要有file，然后我们上传的文件写在file下方
+        # file_name: 首先，这个file_name是我们公司接口定义的上传文件的参数，排入水体名.png 这个是我们放在Files这个文件夹下方的文件名称
+                  #程序在执行的时候，会判断如果你的requestType为 file的时候，则会去执行file下方的参数，然后取到文件名称直接去执行用例
+  # data
+
+  requestType: ~
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  # 上传文件（只需文件）
+  data:
+    file:
+      file_name:
+  # 上传文件（需文件和上传其他参数）
+#  data:
+#    file:
+#      file_name:
+#    data:
+#      is_upload:
+#    params:
+#      collect:
+
+#  * 1、file： 这里下方上传的是文件参数
+#  * 2、data： 这个data下方是该接口，除了文件参数，还需要上传其他的参数，这个参数会以json的方式传给服务端（如果没有其他参数，可以不用写这个）
+#  * 3、params： 这个是除了文件参数以外的，上传的其他参数，这个参数是拼接在url后方的
+
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+  assert:
+    # 断言接口状态码
+    errorCode:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.errorCode
+      type: ==
+      value: 0
+      AssertType:
+  # sql 语句查询
+  sql:
+
+#get请求我们 requestType 写的是 params ，这样发送请求时，我们会将请求参数拼接中url中，最终像服务端发送请求的地址格式会为：
+#如: ${{host()}}/lg/collect/usertools/json?pageNum=1&pageSize=10
+
+#post请求，我们需要请求的数据格式是json格式的，那么requestType 则填写为json格式。
+#包括 PUT/DELETE/HEAD 请求的数据格式都是一样的，唯一不同的就是需要配置 reuqestType，
+#如果需要请求的参数是json格式，则requestType我们就填写json，如果是url拼接的形式，我们就填写 params
+
+

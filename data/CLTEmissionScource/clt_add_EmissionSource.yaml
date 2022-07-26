@@ -1,0 +1,3273 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 排放源管理模块
+  allureStory: 排放源增加接口
+
+add_EmissionSource_01:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 正常增加排放源
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_02:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放源类型名称非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: ~
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "emissionTypeName不能为空"
+      AssertType:
+  # sql 语句查询
+  sql:
+
+add_EmissionSource_03:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源单位非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: ~
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "unit不能为空"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_04:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: ~
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "factor不能为null"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_05:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子单位非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: ~
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "factorUnit不能为空"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_06:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放转化系数非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ~
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "convertFactor不能为null"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_07:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放冷水因子非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ~
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "chilledWaterFactor不能为null"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_08:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源最后填报期限非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: ~
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "inputDeadline不能为null"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_09:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源填报频次非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ~
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "inputFrequency不能为null"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_10:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源条件类型已选择，阈值非空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ${{get_scope_num()}}
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: True
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_11:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放源类型名称为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: "${{get_element()}}"
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+
+add_EmissionSource_12:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放源类型名称为数字
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: "${{random_int()}}"
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+
+add_EmissionSource_13:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放源类型名称为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: "!"#$%&'()*+"
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+
+add_EmissionSource_14:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源名称为空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: ~
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: "emissionSourceName不能为空"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_15:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源名称为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_element()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_16:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源名称为数字
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{random_int()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_17:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源名称为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "!"#$%&'()*+"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_18:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源单位为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_element()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_19:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源单位为数字
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{random_int()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_20:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源单位为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: -1
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_21:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源单位为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_punc()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_22:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_element()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_23:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: -1
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_24:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_country()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_25:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_punc()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_26:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子单位为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_element()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_27:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子单位为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: -1
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_28:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子单位为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_country()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_29:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源排放因子单位为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_punc()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "Success"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_30:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源转换系数为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_element()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_31:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源转换系数为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_country()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_32:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源转换系数为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: -1
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_33:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源转换系数为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_punc()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_34:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源冷水因子为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_element()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_35:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源冷水因子为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_country()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_36:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源冷水因子为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: -1
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_37:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源冷水因子为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_punc()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_38:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源最后填报期限为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: ${{get_element()}}
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_39:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源最后填报期限为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: ${{get_country()}}
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_40:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源最后填报期限为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: -1
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_41:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源最后填报期限为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: ${{get_punc()}}
+    inputFrequency: ${{random_int()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_42:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源填报频次为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: ${{random_int()}}
+    inputFrequency: ${{get_element()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_43:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源填报频次为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: ${{random_int()}}
+    inputFrequency: ${{get_country()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_44:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源填报频次为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: ${{random_int()}}
+    inputFrequency: -1
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_45:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源填报频次为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: ${{random_int()}}
+    inputFrequency: ${{get_punc()}}
+    conditionType: ~
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_46:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源条件类型为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ${{get_element()}}
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_47:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源条件类型为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ${{get_country()}}
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_48:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源条件类型为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: -1
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_49:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源条件类型为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: ${{get_punc()}}
+    thresholdValue: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_50:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源阈值为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: 1
+    thresholdValue: ${{get_element()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_51:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源阈值为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: 1
+    thresholdValue: ${{get_country()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_52:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源阈值为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: 1
+    thresholdValue: -1
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+add_EmissionSource_53:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源阈值为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    emissionTypeName: 电力
+    emissionSourceName: "${{get_job()}}"
+    unit: "${{get_unit()}}"
+    factor: "${{get_pyfloat()}}"
+    factorUnit: "${{get_unit()}}"
+    convertFactor: ${{get_pyfloat()}}
+    chilledWaterFactor: ${{get_pyfloat()}}
+    inputDeadline: 1
+    inputFrequency: ${{random_int()}}
+    conditionType: 1
+    thresholdValue: ${{get_punc()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.emission_type_name
+          replace_key: $.data.emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+  setup_sql:
+    - SELECT emission_type_name,scope FROM emission_type limit 1;
+
+
+
+
+
+
+
+

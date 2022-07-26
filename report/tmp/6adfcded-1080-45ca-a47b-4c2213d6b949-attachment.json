@@ -1,0 +1,1 @@
+"{'emissionTypeName': '电力', 'emissionSourceName': '资料员', 'unit': 'W', 'factor': None, 'factorUnit': 'kn', 'convertFactor': '0.2', 'chilledWaterFactor': '5.69', 'inputDeadline': 1, 'inputFrequency': '3200', 'conditionType': None, 'thresholdValue': None}"

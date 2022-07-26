@@ -1,0 +1,387 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 排放源管理模块
+  allureStory: 排放源列表接口
+
+get_emissionsource_01:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 正常获取排放源列表信息
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: ~
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data: ~
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  # - case_id: send_sms_code_01
+  #   dependent_data:
+  # 提取接口响应的code码
+  #  - dependent_type: response
+  #    jsonpath: $.code
+  #    replace_key: $.data.code
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_02:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取排放源列表信息pageSize传负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    pageSize: -1
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_03:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取排放源列表信息pageSize传空格
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    pageSize: " "
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    messgae:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    Success:
+      jsonpath: $.success
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_04:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取排放源列表信息pageSize传中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    pageSize: "${{get_male_name()}}"
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    messgae:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    Success:
+      jsonpath: $.success
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_05:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取排放源列表信息pageSize传英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    pageSize: "${{get_element()}}"
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    messgae:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    Success:
+      jsonpath: $.success
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_06:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取排放源列表信息pageNo传负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    pageSize: -1
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_07:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取排放源列表信息pageNo传空格
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    pageSize: " "
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    messgae:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    Success:
+      jsonpath: $.success
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_08:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取排放源列表信息pageNo传中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    pageSize: "${{get_male_name()}}"
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    messgae:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    Success:
+      jsonpath: $.success
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_09:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取排放源列表信息pageNo传英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    pageSize: "${{get_element()}}"
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    messgae:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    Success:
+      jsonpath: $.success
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+
+

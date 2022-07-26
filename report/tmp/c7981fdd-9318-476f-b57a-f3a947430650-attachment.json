@@ -1,0 +1,1 @@
+"{'emissionTypeName': '电力', 'emissionSourceName': '配色技术员', 'unit': 'lm', 'factor': -1, 'factorUnit': 'Bq', 'convertFactor': '6.78', 'chilledWaterFactor': '1.32', 'inputDeadline': 1, 'inputFrequency': '8750', 'conditionType': None, 'thresholdValue': None}"

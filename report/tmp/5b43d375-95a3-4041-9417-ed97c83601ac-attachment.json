@@ -1,0 +1,1 @@
+"{'emissionTypeName': '电力', 'emissionSourceName': '医疗器械注册', 'unit': 'Gy', 'factor': '7.99', 'factorUnit': -1, 'convertFactor': '6.82', 'chilledWaterFactor': '9.6', 'inputDeadline': 1, 'inputFrequency': '8889', 'conditionType': None, 'thresholdValue': None}"

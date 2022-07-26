@@ -1,0 +1,326 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 排放源管理模块
+  allureStory: 获取关联项目接口
+
+get_emissionsource_project_01:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/project/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验正常获取关联项目
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  data:
+    id: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.id
+          replace_key: $.data.id
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: gt
+      value: [ ]
+      AssertType:
+  # sql 语句查询
+  sql:
+  setup_sql:
+    - SELECT A.ID,b.project_id,b.floor_id FROM emission_source A INNER JOIN emission_source_project b ON A.ID=b.emission_source_id WHERE b.floor_id != -1 ORDER BY RANDOM() LIMIT 1
+
+get_emissionsource_project_02:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/project/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取关联项目的ID为负数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  data:
+    id: -1
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: [ ]
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_project_03:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/project/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取关联项目的ID为空
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  data:
+    id: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: [ ]
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_project_04:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/project/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取关联项目的ID为中文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  data:
+    id: ${{get_country()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: gt
+      value: ""
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_project_05:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/project/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取关联项目的ID为英文
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  data:
+    id: ${{get_country()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: gt
+      value: ""
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_project_06:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/project/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取关联项目的ID为特殊字符
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  data:
+    id: ${{get_punc()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: gt
+      value: ""
+      AssertType:
+  # sql 语句查询
+  sql:
+
+get_emissionsource_project_07:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/project/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 校验获取关联项目的ID为小数
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: params
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  data:
+    id: ${{get_pyfloat()}}
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    message:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: gt
+      value: ""
+      AssertType:
+  # sql 语句查询
+  sql:

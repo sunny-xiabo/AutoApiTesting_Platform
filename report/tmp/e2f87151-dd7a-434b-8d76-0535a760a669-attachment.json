@@ -1,0 +1,1 @@
+"{'emissionTypeName': '电力', 'emissionSourceName': 'a', 'unit': 'T', 'factor': '1.24', 'factorUnit': 'V', 'convertFactor': '2.57', 'chilledWaterFactor': '8.15', 'inputDeadline': 1, 'inputFrequency': '4205', 'conditionType': None, 'thresholdValue': None}"

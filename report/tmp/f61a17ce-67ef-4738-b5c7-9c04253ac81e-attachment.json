@@ -1,0 +1,1 @@
+"{'emissionTypeName': '电力', 'emissionSourceName': '其他', 'unit': -1, 'factor': '0.8', 'factorUnit': 'r/min', 'convertFactor': '2.54', 'chilledWaterFactor': '1.12', 'inputDeadline': 1, 'inputFrequency': '4675', 'conditionType': None, 'thresholdValue': None}"

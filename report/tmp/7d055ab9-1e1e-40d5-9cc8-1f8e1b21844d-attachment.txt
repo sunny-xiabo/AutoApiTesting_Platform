@@ -1,0 +1,11 @@
+ERROR    /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:logDecoratorl.py:43 
+======================================================
+用例标题: 校验获取关联项目的ID为小数
+请求路径: http://10.5.1.18:31212/api/carbon-lens-enterprise/emission_source/project/?id=3.24
+请求方式: GET
+请求头:   {'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidWFkbWluIjp0cnVlLCJ1bmFtZSI6IuaJmOWwlOaWr-azsOe9lyIsInVpZCI6IjEiLCJyb2xlcyI6WyJ1c2VyIl0sImlzcyI6InNlY3VyaXR5IiwiaWF0IjoxNjU4ODM5NjU1LCJhdWQiOiJzZWN1cml0eS1hbGwiLCJleHAiOjE2NTk0NDQ0NTV9.2N0qoz_WYTrW5A3oiyosk3ZtgTyZF-eOiecN-gJMR7k', 'Content-Length': '7'}
+请求内容: None
+接口响应内容: {"success":false,"message":"请求的数据格式不符!","code":"400","result":"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"3.24\"","timestamp":1658839657667}
+接口响应时长: 127.74 ms
+Http状态码: 400
+=====================================================

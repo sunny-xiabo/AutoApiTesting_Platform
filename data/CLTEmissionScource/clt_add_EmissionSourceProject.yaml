@@ -1,0 +1,51 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 排放源管理模块
+  allureStory: 增加关联项目接口
+
+add_emissionsource_project_01:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/project/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验正常增加关联项目
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  data:
+    id:
+    projectList: [{"projectId":186,"floorIdList":[1,2,3]}]
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.project_id
+          replace_key: $.data.id
+        - dependent_type: sqlData
+          jsonpath: $.id
+          replace_key: $.data.projectList
+
+  assert:
+    # 断言接口状态码
+    Code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: ~
+      type: ~
+      value: ~
+      AssertType:
+  # sql 语句查询
+  sql:

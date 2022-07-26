@@ -1,0 +1,53 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 登录模块
+  allureStory: 登录
+
+tec_login_01:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /auth/login/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 正常登录
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    # 这里cookie的值，写的是存入缓存的名称
+#    cookie: ~
+      # 请求的数据，是 params 还是 json、或者file、data
+      # params URL参数拼接的形式
+      # json post请求，请求参数是JSON格式
+      # file 文件上传，注意两个地方，主要是用例中的 requestType 和 filename 字段
+      # requestType: 上传文件，我们需要更改成 file
+      # file: 如果是文件上传的话，就不需要要有file，然后我们上传的文件写在file下方
+      # file_name: 首先，这个file_name是我们公司接口定义的上传文件的参数，排入水体名.png 这个是我们放在Files这个文件夹下方的文件名称
+    #程序在执行的时候，会判断如果你的requestType为 file的时候，则会去执行file下方的参数，然后取到文件名称直接去执行用例
+  # data
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  # data 数据
+  # 上传文件（只需文件）
+  data:
+    username: 'test2'
+    password: '12345678'
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+  assert:
+    # 断言接口状态码
+    errorCode:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+  # sql 语句查询
+  sql:

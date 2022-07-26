@@ -1,0 +1,45 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 排放源管理模块
+  allureStory: 排放源范围（获取全部）
+
+get_emission_source_scope:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/scope/
+  # 请求方法 GET POST
+  method: GET
+  # 用例说明
+  detail: 正常获取排放源范围
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+    # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+  requestType: ~
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  # 上传文件（只需文件）
+  data:
+  #  * 1、file： 这里下方上传的是文件参数
+  #  * 2、data： 这个data下方是该接口，除了文件参数，还需要上传其他的参数，这个参数会以json的方式传给服务端（如果没有其他参数，可以不用写这个）
+  #  * 3、params： 这个是除了文件参数以外的，上传的其他参数，这个参数是拼接在url后方的
+
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data:
+  assert:
+    # 断言接口状态码
+    errorCode:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+  # sql 语句查询
+  sql:

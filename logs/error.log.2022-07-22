@@ -1,0 +1,167 @@
+ERROR   2022-07-18 16:55:08,253  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:logControl.py:79 测试
+ERROR   2022-07-18 16:57:41,247  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:logControl.py:80 测试error
+ERROR   2022-07-18 17:02:41,215  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:logControl.py:80 测试error
+ERROR   2022-07-19 17:07:21,318  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:logControl.py:81 测试error
+ERROR   2022-07-19 17:26:03,021  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:137 异常用例数: 0
+ERROR   2022-07-19 17:26:03,021  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 失败用例数: 0
+ERROR   2022-07-19 17:29:15,455  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:runTimeDecoratorl.py:32 
+=================================================================================
+测试用例执行时间较长，请关注.
+函数运行时间:3750 ms
+测试用例相关数据: {'response_data': {'data': None, 'errorCode': -1, 'errorMsg': '账号密码不匹配！'}, 'sql_data': {'sql': None}, 'yaml_data': {'method': 'POST', 'is_run': None, 'url': 'https://www.wanandroid.com/user/login', 'detail': '登录密码为空', 'headers': {'Content-Type': 'multipart/form-data;'}, 'requestType': 'DATA', 'data': {'username': '18800000001', 'password': None}, 'dependence_case': False, 'dependence_case_data': {'dependence_case_data': None}, 'current_request_set_cache': None, 'sql': None, 'assert': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': -1, 'AssertType': None}, 'errorMsg': {'jsonpath': '$.errorMsg', 'type': '==', 'value': '账号密码不匹配！', 'AssertType': None}}, 'setup_sql': None, 'teardown': None, 'teardown_sql': None, 'sleep': None, 'response_cache': None}, 'headers': {'Content-Type': 'multipart/form-data; boundary=69212f4acdc24a04b9f8d594fe6047ee'}, 'cookie': {'JSESSIONID': '325AC0D43A60B8B88E53F18A7BCBC175'}, 'res_time': 3749.505, 'status_code': 200, 'teardown': None, 'teardown_sql': None}
+=================================================================================
+ERROR   2022-07-19 17:29:18,835  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:runTimeDecoratorl.py:32 
+=================================================================================
+测试用例执行时间较长，请关注.
+函数运行时间:3366 ms
+测试用例相关数据: {'response_data': {'data': None, 'errorCode': -1, 'errorMsg': '账号密码不匹配！'}, 'sql_data': {'sql': None}, 'yaml_data': {'method': 'POST', 'is_run': None, 'url': 'https://www.wanandroid.com/user/login', 'detail': '输入非1开头的手机号码', 'headers': {'Content-Type': 'multipart/form-data;'}, 'requestType': 'DATA', 'data': {'username': '28800000001', 'password': '12345'}, 'dependence_case': False, 'dependence_case_data': {'dependence_case_data': None}, 'current_request_set_cache': None, 'sql': None, 'assert': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': -1, 'AssertType': None}, 'errorMsg': {'jsonpath': '$.errorMsg', 'type': '==', 'value': '账号密码不匹配！', 'AssertType': None}}, 'setup_sql': None, 'teardown': None, 'teardown_sql': None, 'sleep': None, 'response_cache': None}, 'headers': {'Content-Type': 'multipart/form-data; boundary=f7a669474038441bb28db0bd950bc46b'}, 'cookie': {'JSESSIONID': '0E5F94C7BD61AE5895649A3A50B99813'}, 'res_time': 3365.598, 'status_code': 200, 'teardown': None, 'teardown_sql': None}
+=================================================================================
+ERROR   2022-07-19 17:29:27,955  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:137 异常用例数: 0
+ERROR   2022-07-19 17:29:27,955  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 失败用例数: 0
+ERROR   2022-07-19 17:43:37,665  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:137 异常用例数: 9
+ERROR   2022-07-19 17:43:37,666  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 失败用例数: 0
+ERROR   2022-07-19 17:46:10,120  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:137 异常用例数: 0
+ERROR   2022-07-19 17:46:10,121  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 失败用例数: 0
+ERROR   2022-07-19 22:12:13,708  /Users/xiabo/work/AutoApi_Platform/logs/error.log:conftest.py:136 异常用例数: 0
+ERROR   2022-07-19 22:12:13,709  /Users/xiabo/work/AutoApi_Platform/logs/error.log:conftest.py:137 失败用例数: 0
+ERROR   2022-07-20 11:58:27,663  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 2
+ERROR   2022-07-20 11:58:27,663  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 11:59:53,672  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 1
+ERROR   2022-07-20 11:59:53,672  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 12:01:41,593  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 12:01:41,594  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-20 12:02:53,988  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 12:02:53,988  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 13:29:02,049  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 13:29:02,049  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 13:37:42,256  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 13:37:42,259  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 19:24:55,469  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 19:24:55,470  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 19:34:45,097  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 19:34:45,098  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:05:00,413  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 1
+ERROR   2022-07-20 20:05:00,414  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:16:00,120  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:16:00,120  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:17:36,399  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:17:36,399  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:20:13,994  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:20:13,995  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:25:07,961  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:25:07,961  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:26:13,361  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:26:13,361  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:29:57,487  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:29:57,488  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:32:19,530  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:32:19,530  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:38:16,225  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:38:16,225  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-20 20:58:39,451  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-20 20:58:39,451  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 2
+ERROR   2022-07-21 15:12:23,600  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:postgresqlControl.py:42 数据库连接失败，失败原因invalid dsn: invalid connection option "db"
+
+ERROR   2022-07-21 15:12:23,601  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:postgresqlControl.py:69 数据库连接失败，失败原因'PostgreDB' object has no attribute 'cur'
+ERROR   2022-07-21 15:17:46,349  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:postgresqlControl.py:51 数据库连接失败，失败原因'PostgreDB' object has no attribute 'cur'
+ERROR   2022-07-21 15:40:38,626  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-21 15:40:38,627  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 3
+ERROR   2022-07-21 15:43:15,632  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-21 15:43:15,633  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 3
+ERROR   2022-07-21 15:45:37,434  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:mysqlControl.py:45 数据库连接失败，失败原因(2003, "Can't connect to MySQL server on 'localhost' ([Errno 61] Connection refused)")
+ERROR   2022-07-21 15:45:37,438  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:mysqlControl.py:76 数据库连接失败，失败原因'MysqlDB' object has no attribute 'cur'
+ERROR   2022-07-21 15:45:37,438  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:mysqlControl.py:128 数据库连接失败，失败原因'NoneType' object is not subscriptable
+ERROR   2022-07-21 15:45:38,162  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-21 15:45:38,163  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 3
+ERROR   2022-07-21 15:45:40,125  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:mysqlControl.py:54 数据库连接失败，失败原因'MysqlDB' object has no attribute 'cur'
+ERROR   2022-07-21 16:02:19,645  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:postgresqlControl.py:121 数据库连接失败，失败原因'tuple' object has no attribute 'items'
+ERROR   2022-07-21 16:03:36,243  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:postgresqlControl.py:121 数据库连接失败，失败原因'tuple' object has no attribute 'items'
+ERROR   2022-07-21 16:03:37,159  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-21 16:03:37,159  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 3
+ERROR   2022-07-21 16:18:14,771  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 11
+ERROR   2022-07-21 16:18:14,771  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-21 16:21:41,376  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 1
+ERROR   2022-07-21 16:21:41,376  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-21 16:23:39,223  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 1
+ERROR   2022-07-21 16:23:39,224  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-21 16:24:51,966  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 1
+ERROR   2022-07-21 16:24:51,966  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-21 16:26:08,979  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 11
+ERROR   2022-07-21 16:26:08,980  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-21 16:26:35,422  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 1
+ERROR   2022-07-21 16:26:35,423  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-21 16:42:32,302  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:postgresqlControl.py:121 数据库连接失败，失败原因'tuple' object has no attribute 'items'
+ERROR   2022-07-21 16:42:32,980  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-21 16:42:32,980  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 3
+ERROR   2022-07-21 16:56:56,382  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:postgresqlControl.py:42 数据库连接失败，失败原因module 'psycopg2' has no attribute 'extras'
+ERROR   2022-07-21 16:56:56,385  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:postgresqlControl.py:69 数据库连接失败，失败原因'PostgreDB' object has no attribute 'cur'
+ERROR   2022-07-21 16:58:42,712  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-21 16:58:42,713  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 3
+ERROR   2022-07-21 17:20:02,537  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-21 17:20:02,537  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 2
+ERROR   2022-07-22 10:27:27,401  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 10:27:27,402  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 10:35:30,750  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 1
+ERROR   2022-07-22 10:35:30,752  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 10:36:10,304  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 10:36:10,304  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 10:52:23,094  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 10:52:23,094  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 2
+ERROR   2022-07-22 10:53:13,102  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 10:53:13,103  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 11:02:34,103  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:02:34,103  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 11:33:05,519  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:33:05,519  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 11:36:10,151  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:36:10,151  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 11:39:24,087  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:39:24,087  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 11:40:33,640  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:40:33,641  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 11:46:13,394  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:46:13,395  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 11:48:11,757  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:48:11,757  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 11:49:27,230  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:49:27,230  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 11:52:19,534  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:52:19,534  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 2
+ERROR   2022-07-22 11:53:41,163  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:53:41,163  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 11:59:23,487  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 11:59:23,487  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 12:02:22,129  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 12:02:22,129  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 12:03:41,762  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 12:03:41,762  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 14:09:02,523  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:assertControl.py:135 JsonPath值获取失败$.code
+ERROR   2022-07-22 14:09:02,759  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:09:02,759  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:10:13,580  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:assertControl.py:135 JsonPath值获取失败$.code
+ERROR   2022-07-22 14:10:13,796  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:10:13,796  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:10:58,725  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:10:58,726  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 14:22:56,523  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:22:56,524  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 14:24:35,237  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:24:35,237  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:25:32,739  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:25:32,739  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 14:42:15,919  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:42:15,919  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:44:50,097  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:44:50,097  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:48:25,224  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:48:25,225  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:51:19,405  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:51:19,406  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:51:46,250  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:51:46,250  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:52:26,348  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:52:26,348  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 1
+ERROR   2022-07-22 14:54:31,567  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 14:54:31,568  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0
+ERROR   2022-07-22 15:53:25,740  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:138 异常用例数: 0
+ERROR   2022-07-22 15:53:25,740  /Users/xiabo/SoftwareTest/carbonPy/AutoApi_Platform/logs/error.log:conftest.py:139 失败用例数: 0

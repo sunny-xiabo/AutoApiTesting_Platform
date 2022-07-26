@@ -1,0 +1,1 @@
+"{'emissionTypeName': '电力', 'emissionSourceName': '汽车电工', 'unit': 'S', 'factor': '8.13', 'factorUnit': 'Wb', 'convertFactor': '9.44', 'chilledWaterFactor': '1.96', 'inputDeadline': 1, 'inputFrequency': None, 'conditionType': None, 'thresholdValue': None}"

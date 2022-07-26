@@ -1,0 +1,258 @@
+# 公共参数
+case_common:
+  allureEpic: Carbon Lens TEC
+  allureFeature: 排放源管理模块
+  allureStory: 排放源类型列表接口
+
+add_emission_source_emissionType_01:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/emission_type/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 正常添加排放源类型(单个）
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+      # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    addList: [{"emissionTypeName": "${{get_country()}}","scope":"${{get_scope_num()}}"}]
+
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+  assert:
+    # 断言接口状态码
+    errorCode:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+
+add_emission_source_emissionType_02:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/emission_type/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 正常添加排放源类型(多个）
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+      # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    addList: [
+      {"emissionTypeName": "${{get_country()}}","scope":"${{get_scope_num()}}"},
+      {"emissionTypeName": "${{get_country()}}","scope":"${{get_scope_num()}}"},
+    ]
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+  assert:
+    # 断言接口状态码
+    errorCode:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+  # sql 语句查询
+  sql:
+
+add_emission_source_emissionType_03:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/emission_type/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 判断scope类型之外添加(单个）
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+      # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    addList: [
+      {"emissionTypeName": "${{get_country()}}","scope":4},
+    ]
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+  assert:
+    # 断言接口状态码
+    errorCode:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+
+add_emission_source_emissionType_04:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/emission_type/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 判断scope类型之外添加(多个）
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+      # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    addList: [
+      {"emissionTypeName": "${{get_country()}}","scope":4},
+      {"emissionTypeName": "${{get_country()}}","scope":5},
+    ]
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+  assert:
+    # 断言接口状态码
+    errorCode:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.result
+      type: ==
+      value: false
+      AssertType:
+  # sql 语句查询
+  sql:
+
+add_emission_source_emissionType_05:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/emission_type/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 排放源类型传入空值校验
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+      # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data: ~
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: False
+  # 依赖的数据
+  dependence_case_data: ~
+  assert:
+    # 断言接口状态码
+    errorCode:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "400"
+      AssertType:
+    msg:
+      jsonpath: $.message
+      type: ==
+      value: "请求的数据格式不符!"
+      AssertType:
+  # sql 语句查询
+  sql:
+
+
+add_emission_source_emissionType_06:
+  # 主机路径,从conf.yaml获取
+  host: ${{host()}}
+  # 接口路径
+  url: /emission_source/emission_type/
+  # 请求方法 GET POST
+  method: POST
+  # 用例说明
+  detail: 校验排放源类型修改名称
+  # headers 信息头
+  headers:
+    Content-Type: application/json;
+      # 这里cookie的值，写的是存入缓存的名称
+    Authorization: $cache{work_login_token}
+
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run: false
+  # data 数据
+  data:
+    addList: [
+      { "emissionTypeName": "${{get_country()}}","scope": 3 }
+    ]
+
+  # 是否有依赖业务，为空或者false则表示没有
+  dependence_case: True
+  # 依赖的数据
+  dependence_case_data:
+    - case_id: get_emission_source_emissionType
+      dependence_data:
+          # 提取接口响应code码
+        - dependence_type: response
+          jsonpath: $.code
+          set_cache: $.result[-1:].emissionTypeName
+
+  assert:
+    # 断言接口状态码
+    code:
+      # jsonpath 匹配对应的数据，如errorCode
+      jsonpath: $.code
+      type: ==
+      value: "200"
+      AssertType:
+    result:
+      jsonpath: $.result
+      type: ==
+      value: true
+      AssertType:
+
+  # sql 语句查询
+  sql:
+    - SELECT emission_type_name, scope  FROM emission_type WHERE scope=3 and emission_type_name='电力'
+
