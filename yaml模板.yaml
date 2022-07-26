@@ -25,7 +25,7 @@ testcase_name:
         # requestType: 上传文件，我们需要更改成 file
         # file: 如果是文件上传的话，就不需要要有file，然后我们上传的文件写在file下方
         # file_name: 首先，这个file_name是我们公司接口定义的上传文件的参数，排入水体名.png 这个是我们放在Files这个文件夹下方的文件名称
-                  #程序在执行的时候，会判断如果你的requestType为 file的时候，则会去执行file下方的参数，然后取到文件名称直接去执行用例
+                     #程序在执行的时候，会判断如果你的requestType为 file的时候，则会去执行file下方的参数，然后取到文件名称直接去执行用例
   # data
 
   requestType: ~

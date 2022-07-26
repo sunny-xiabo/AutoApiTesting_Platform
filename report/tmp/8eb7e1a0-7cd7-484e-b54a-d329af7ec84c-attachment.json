@@ -1,1 +1,0 @@
-"[{'case_id': 'self', 'dependent_data': [{'dependent_type': 'sqlData', 'jsonpath': '$.emission_type_name', 'replace_key': '$.data.emissionTypeName'}]}]"

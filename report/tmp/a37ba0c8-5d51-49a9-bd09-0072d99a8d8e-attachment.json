@@ -1,1 +1,0 @@
-"[{'case_id': 'get_emission_source_emissionType', 'dependent_data': [{'dependent_type': 'response', 'jsonpath': '$.result[0].emissionTypeName', 'replace_key': '$.data.emissionTypeName'}]}]"

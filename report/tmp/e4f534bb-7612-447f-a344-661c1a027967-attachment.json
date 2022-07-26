@@ -1,1 +1,0 @@
-"{'emissionTypeName': '电力', 'emissionSourceName': '营业部大堂经理', 'unit': 'W', 'factor': '2.46', 'factorUnit': 'min', 'convertFactor': '6.8', 'chilledWaterFactor': '1.11', 'inputDeadline': 1, 'inputFrequency': '535', 'conditionType': '2', 'thresholdValue': None}"
