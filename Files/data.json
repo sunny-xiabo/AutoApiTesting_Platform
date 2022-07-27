@@ -1,0 +1,5344 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.1.0",
+        "title": "Carbon Lens API Doc",
+        "termsOfService": "urn:tos",
+        "contact": {},
+        "license": {}
+    },
+    "host": "10.5.1.18:31212",
+    "tags": [
+        {
+            "name": "Algorithms 算法管理",
+            "description": "Carbon Algorithm Controller"
+        },
+        {
+            "name": "Auth 登录认证",
+            "description": "登录认证服务接口"
+        },
+        {
+            "name": "Currency 管理",
+            "description": "Currency Controller"
+        },
+        {
+            "name": "Industry 行业管理",
+            "description": "Carbon Industry Controller"
+        },
+        {
+            "name": "Metrics 碳排放指标",
+            "description": "Carbon Metric Controller"
+        },
+        {
+            "name": "Project 主体管理",
+            "description": "用户扩展服务接口"
+        },
+        {
+            "name": "Region 管理",
+            "description": "Region Controller"
+        },
+        {
+            "name": "RoleAdmin 角色管理",
+            "description": "角色服务接口"
+        },
+        {
+            "name": "TaskFill 管理",
+            "description": "Task Fill Controller"
+        },
+        {
+            "name": "User 用户管理",
+            "description": "用户服务接口"
+        },
+        {
+            "name": "emissionFactor 管理",
+            "description": "Emission Factor Controller"
+        },
+        {
+            "name": "emissionSource 管理",
+            "description": "Emission Source Controller"
+        },
+        {
+            "name": "sms-email-controller",
+            "description": "Sms Email Controller"
+        },
+        {
+            "name": "任务管理",
+            "description": "Task Manage Controller"
+        }
+    ],
+    "paths": {
+        "/api/carbon-lens-enterprise/auth/edit_password/": {
+            "post": {
+                "tags": [
+                    "Auth 登录认证"
+                ],
+                "summary": "修改密码",
+                "operationId": "editPasswordUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EditPasswordDTO",
+                            "originalRef": "EditPasswordDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«boolean»",
+                            "originalRef": "接口返回对象«boolean»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/auth/login/": {
+            "post": {
+                "tags": [
+                    "Auth 登录认证"
+                ],
+                "summary": "登录",
+                "description": "返回的data为JwtTokenDTO",
+                "operationId": "loginUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "loginDTO",
+                        "description": "loginDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LoginDTO",
+                            "originalRef": "LoginDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«JwtTokenDTO»",
+                            "originalRef": "接口返回对象«JwtTokenDTO»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/auth/logout/": {
+            "get": {
+                "tags": [
+                    "Auth 登录认证"
+                ],
+                "summary": "退出登录",
+                "description": "退出登录(清除用户登录数据)",
+                "operationId": "logoutUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«boolean»",
+                            "originalRef": "接口返回对象«boolean»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/auth/reset_password/": {
+            "post": {
+                "tags": [
+                    "Auth 登录认证"
+                ],
+                "summary": "找回密码",
+                "operationId": "resetPasswordUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ResetPasswordDTO",
+                            "originalRef": "ResetPasswordDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«boolean»",
+                            "originalRef": "接口返回对象«boolean»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/carbon_algorithms/": {
+            "get": {
+                "tags": [
+                    "Algorithms 算法管理"
+                ],
+                "summary": "根据算法ID获取算法列表",
+                "operationId": "listUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "carbonAlgorithmCatalogId",
+                        "in": "query",
+                        "description": "carbonAlgorithmCatalogId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/carbon_industries/": {
+            "get": {
+                "tags": [
+                    "Industry 行业管理"
+                ],
+                "summary": "行业筛选列表",
+                "operationId": "listUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/carbon_industries/all_industries": {
+            "get": {
+                "tags": [
+                    "Industry 行业管理"
+                ],
+                "summary": "全部行业列表",
+                "operationId": "allListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/carbon_industries/all_industry_scopes": {
+            "get": {
+                "tags": [
+                    "Industry 行业管理"
+                ],
+                "summary": "行业scopes列表",
+                "operationId": "allScopeListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "lang",
+                        "in": "query",
+                        "description": "lang",
+                        "required": false,
+                        "type": "string",
+                        "default": "zh_CN"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/carbon_metrics/": {
+            "get": {
+                "tags": [
+                    "Metrics 碳排放指标"
+                ],
+                "summary": "查询列表",
+                "operationId": "idListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "idList",
+                        "in": "query",
+                        "description": "idList",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/carbon_metrics/list": {
+            "get": {
+                "tags": [
+                    "Metrics 碳排放指标"
+                ],
+                "summary": "指标列表",
+                "operationId": "listUsingGET_2",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "catalog",
+                        "in": "query",
+                        "description": "catalog",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "metricType",
+                        "in": "query",
+                        "description": "metricType",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNo",
+                        "in": "query",
+                        "description": "pageNo",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10,
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/currency/": {
+            "get": {
+                "tags": [
+                    "Currency 管理"
+                ],
+                "summary": "获取汇率接口",
+                "operationId": "listUsingGET_3",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "currencyCode",
+                        "in": "query",
+                        "description": "currencyCode",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "endDate",
+                        "in": "query",
+                        "description": "endDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNo",
+                        "in": "query",
+                        "description": "pageNo",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "exclusiveMinimum": false,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": true,
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "exclusiveMaximum": false,
+                        "minimum": 1,
+                        "exclusiveMinimum": false,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "startDate",
+                        "in": "query",
+                        "description": "startDate",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Currency 管理"
+                ],
+                "summary": "增加汇率接口",
+                "operationId": "addUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateCurrencyDTO",
+                            "originalRef": "CreateCurrencyDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Currency 管理"
+                ],
+                "summary": "更新汇率接口",
+                "operationId": "updateUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateCurrencyDTO",
+                            "originalRef": "UpdateCurrencyDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/currency/all_list/": {
+            "get": {
+                "tags": [
+                    "Currency 管理"
+                ],
+                "summary": "获取通用币种接口",
+                "operationId": "allListUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/currency/currency_all/": {
+            "delete": {
+                "tags": [
+                    "Currency 管理"
+                ],
+                "summary": "删除全部汇率接口",
+                "operationId": "deleteAllUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "currencyCode",
+                        "in": "query",
+                        "description": "currencyCode",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/currency/project/": {
+            "get": {
+                "tags": [
+                    "Currency 管理"
+                ],
+                "summary": "获取汇率关联楼宇接口",
+                "operationId": "getProjectListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "currencyCode",
+                        "in": "query",
+                        "description": "currencyCode",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Currency 管理"
+                ],
+                "summary": "更新汇率关联楼宇接口",
+                "operationId": "projectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CurrencyProjectDTO",
+                            "originalRef": "CurrencyProjectDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/emission_source/": {
+            "get": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "排放源列表接口",
+                "operationId": "emissionSourceUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "emissionSourceName",
+                        "in": "query",
+                        "description": "emissionSourceName",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "emissionTypeName",
+                        "in": "query",
+                        "description": "emissionTypeName",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNo",
+                        "in": "query",
+                        "description": "pageNo",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "projectName",
+                        "in": "query",
+                        "description": "projectName",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "增加、更新排放源接口",
+                "operationId": "updateEmissionSourceUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateEmissionSourceDTO",
+                            "originalRef": "CreateEmissionSourceDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "删除排放源接口",
+                "operationId": "deleteEmissionSourceUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "exclusiveMinimum": false,
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/emission_source/condition_type/": {
+            "get": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "条件类型定义（获取全部）",
+                "operationId": "conditionTypeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/emission_source/emission_factor/": {
+            "get": {
+                "tags": [
+                    "emissionFactor 管理"
+                ],
+                "summary": "获取排放因子版本列表接口",
+                "operationId": "listUsingGET_4",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "emissionSourceId",
+                        "in": "query",
+                        "description": "emissionSourceId",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "exclusiveMinimum": false,
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "emissionFactor 管理"
+                ],
+                "summary": "增加排放因子版本接口",
+                "operationId": "addUsingPOST_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateEmissionFactorDTO",
+                            "originalRef": "CreateEmissionFactorDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "emissionFactor 管理"
+                ],
+                "summary": "更新排放因子版本接口",
+                "operationId": "updateUsingPUT_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateEmissionFactorDTO",
+                            "originalRef": "UpdateEmissionFactorDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "emissionFactor 管理"
+                ],
+                "summary": "删除排放因子版本接口",
+                "operationId": "deleteUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "exclusiveMinimum": false,
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/emission_source/emission_type/": {
+            "get": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "排放源类型列表接口（获取全部）",
+                "operationId": "emissionTypeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "增加排放源类型接口",
+                "operationId": "addEmissionTypeUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "type",
+                        "description": "type",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateEmissionType",
+                            "originalRef": "UpdateEmissionType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "删除排放源类型接口",
+                "operationId": "deleteEmissionTypeUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "emissionTypeName",
+                        "in": "query",
+                        "description": "emissionTypeName",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/emission_source/emission_type/check/": {
+            "get": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "校验排放源类型接口",
+                "operationId": "checkEmissionTypeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "emissionTypeName",
+                        "in": "query",
+                        "description": "emissionTypeName",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/emission_source/project/": {
+            "get": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "获取关联项目接口",
+                "operationId": "projectUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "exclusiveMinimum": false,
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "获取关联项目接口",
+                "operationId": "projectUsingPOST_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateEmissionSourceProjectDTO",
+                            "originalRef": "UpdateEmissionSourceProjectDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/emission_source/scope/": {
+            "get": {
+                "tags": [
+                    "emissionSource 管理"
+                ],
+                "summary": "排放源范围定义（获取全部）",
+                "operationId": "scopeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/project/": {
+            "get": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "获取用户项目",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "projectListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "cityId",
+                        "in": "query",
+                        "description": "cityId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "continentId",
+                        "in": "query",
+                        "description": "continentId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "countryId",
+                        "in": "query",
+                        "description": "countryId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "pageNo",
+                        "in": "query",
+                        "description": "pageNo",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "增加项目",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "addUsingPOST_2",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateProjectDTO",
+                            "originalRef": "CreateProjectDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "更新项目详情",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "updateUsingPUT_2",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateProjectDTO",
+                            "originalRef": "UpdateProjectDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "删除项目",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "deleteUsingDELETE_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/project/detail": {
+            "get": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "获取项目详情",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "projectDetailUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/project/emission_source/": {
+            "get": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "根据楼宇获取关联排放源接口",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "emissionSourceUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "增加/更新楼宇关联排放源接口",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "addEmissionSourceUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateProjectEmissionSourceDTO",
+                            "originalRef": "UpdateProjectEmissionSourceDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/project/emission_source_all/": {
+            "get": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "获取全部排放源列表",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "emissionSourceAllUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/project/tree/": {
+            "get": {
+                "tags": [
+                    "Project 主体管理"
+                ],
+                "summary": "获取区域树结构",
+                "description": "返回的data为ProjectDTO",
+                "operationId": "projectTreeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/region/": {
+            "post": {
+                "tags": [
+                    "Region 管理"
+                ],
+                "summary": "增加区域、国家、城市接口",
+                "operationId": "addUsingPOST_3",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateRegionDTO",
+                            "originalRef": "CreateRegionDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Region 管理"
+                ],
+                "summary": "修改区域、国家、城市接口",
+                "operationId": "updateUsingPUT_3",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateRegionDTO",
+                            "originalRef": "UpdateRegionDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Region 管理"
+                ],
+                "summary": "删除区域、国家、城市接口",
+                "operationId": "deleteUsingDELETE_2",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "type",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/region/all_list/": {
+            "get": {
+                "tags": [
+                    "Region 管理"
+                ],
+                "summary": "获取全部国家、城市接口",
+                "operationId": "listUsingGET_5",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "lang",
+                        "in": "query",
+                        "description": "lang",
+                        "required": false,
+                        "type": "string",
+                        "default": "zh_CN"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/region/tree/": {
+            "get": {
+                "tags": [
+                    "Region 管理"
+                ],
+                "summary": "区域树结构接口",
+                "operationId": "regionTreeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/role_admin/": {
+            "get": {
+                "tags": [
+                    "RoleAdmin 角色管理"
+                ],
+                "summary": "根据条件查询角色列表",
+                "description": "返回的data为RoleDTO, 分页参数放在url上",
+                "operationId": "listUsingGET_6",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNo",
+                        "in": "query",
+                        "description": "pageNo",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10,
+                        "maximum": 100,
+                        "exclusiveMaximum": false,
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«IPage«Role»»",
+                            "originalRef": "接口返回对象«IPage«Role»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "RoleAdmin 角色管理"
+                ],
+                "summary": "新增角色",
+                "description": "返回的data为RoleDTO",
+                "operationId": "addUsingPOST_4",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "roleDTO",
+                        "description": "roleDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RoleCreateDTO",
+                            "originalRef": "RoleCreateDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«RoleDTO»",
+                            "originalRef": "接口返回对象«RoleDTO»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "RoleAdmin 角色管理"
+                ],
+                "summary": "更新角色",
+                "description": "返回的data为RoleDTO",
+                "operationId": "updateUsingPUT_4",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "roleDTO",
+                        "description": "roleDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RoleUpdateDTO",
+                            "originalRef": "RoleUpdateDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«RoleDTO»",
+                            "originalRef": "接口返回对象«RoleDTO»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "RoleAdmin 角色管理"
+                ],
+                "summary": "删除角色",
+                "description": "返回的data为Boolean",
+                "operationId": "delUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "roleId",
+                        "in": "query",
+                        "description": "roleId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«boolean»",
+                            "originalRef": "接口返回对象«boolean»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/role_admin/all/": {
+            "get": {
+                "tags": [
+                    "RoleAdmin 角色管理"
+                ],
+                "summary": "查询角色列表",
+                "description": "返回的data为RoleDTO, 不分页",
+                "operationId": "allUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«List«RoleDTO»»",
+                            "originalRef": "接口返回对象«List«RoleDTO»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/role_admin/detail/": {
+            "get": {
+                "tags": [
+                    "RoleAdmin 角色管理"
+                ],
+                "summary": "根据id查询角色",
+                "description": "返回的data为RoleDTO",
+                "operationId": "infoUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "roleId",
+                        "in": "query",
+                        "description": "roleId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«RoleDTO»",
+                            "originalRef": "接口返回对象«RoleDTO»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/role_admin/role": {
+            "get": {
+                "tags": [
+                    "RoleAdmin 角色管理"
+                ],
+                "summary": "获取用户角色",
+                "description": "返回的data为RoleDTO",
+                "operationId": "roleUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«RoleDTO»",
+                            "originalRef": "接口返回对象«RoleDTO»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_fill/": {
+            "get": {
+                "tags": [
+                    "TaskFill 管理"
+                ],
+                "summary": "获取填报数据接口",
+                "operationId": "taskFillUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "month",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "year",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "TaskFill 管理"
+                ],
+                "summary": "更新填报数据接口",
+                "operationId": "taskFillUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateTaskFillDTO",
+                            "originalRef": "UpdateTaskFillDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_fill/emission_source_tree/": {
+            "get": {
+                "tags": [
+                    "TaskFill 管理"
+                ],
+                "summary": "排放源树结构接口（获取全部）",
+                "operationId": "emissionSourceTreeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_fill/flow/": {
+            "get": {
+                "tags": [
+                    "TaskFill 管理"
+                ],
+                "summary": "获取操作流水数据接口",
+                "operationId": "flowUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "month",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "year",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_fill/status/": {
+            "get": {
+                "tags": [
+                    "TaskFill 管理"
+                ],
+                "summary": "任务状态定义（获取全部）",
+                "operationId": "statusUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_fill/year_list/": {
+            "get": {
+                "tags": [
+                    "TaskFill 管理"
+                ],
+                "summary": "核算年度列表接口（获取全部）",
+                "operationId": "yearListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_manage/": {
+            "get": {
+                "tags": [
+                    "任务管理"
+                ],
+                "summary": "任务管理列表",
+                "operationId": "listUsingGET_7",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "cityId",
+                        "in": "query",
+                        "description": "cityId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "continentId",
+                        "in": "query",
+                        "description": "continentId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "countryId",
+                        "in": "query",
+                        "description": "countryId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNo",
+                        "in": "query",
+                        "description": "pageNo",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10,
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_manage/detail/": {
+            "get": {
+                "tags": [
+                    "任务管理"
+                ],
+                "summary": "任务详情",
+                "operationId": "detailUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "month",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "year",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_manage/examine/": {
+            "get": {
+                "tags": [
+                    "任务管理"
+                ],
+                "summary": "审核接口",
+                "operationId": "examineUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExamineDTO",
+                            "originalRef": "ExamineDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_manage/export/": {
+            "get": {
+                "tags": [
+                    "任务管理"
+                ],
+                "summary": "导出",
+                "operationId": "exportUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "cityId",
+                        "in": "query",
+                        "description": "cityId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "continentId",
+                        "in": "query",
+                        "description": "continentId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "countryId",
+                        "in": "query",
+                        "description": "countryId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNo",
+                        "in": "query",
+                        "description": "pageNo",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1000,
+                        "maximum": 1000,
+                        "exclusiveMaximum": false,
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_manage/project_status/": {
+            "get": {
+                "tags": [
+                    "任务管理"
+                ],
+                "summary": "项目状态",
+                "operationId": "projectStatusUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "month",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "year",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/task_manage/urge/": {
+            "get": {
+                "tags": [
+                    "任务管理"
+                ],
+                "summary": "催办",
+                "operationId": "urgeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UrgeDTO",
+                            "originalRef": "UrgeDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/user/": {
+            "get": {
+                "tags": [
+                    "User 用户管理"
+                ],
+                "summary": "根据条件分页获取用户列表",
+                "description": "返回的data为TenantUserDTO, 分页参数放在url上",
+                "operationId": "listUsingGET_8",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "enabled",
+                        "in": "query",
+                        "description": "enabled",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "keyword",
+                        "in": "query",
+                        "description": "keyword",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNo",
+                        "in": "query",
+                        "description": "pageNo",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "minimum": 1,
+                        "exclusiveMinimum": false,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10,
+                        "maximum": 100,
+                        "exclusiveMaximum": false,
+                        "minimum": 1,
+                        "exclusiveMinimum": false,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "roleId",
+                        "in": "query",
+                        "description": "roleId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User 用户管理"
+                ],
+                "summary": "新增用户信息",
+                "description": "返回的data为TenantUserDTO",
+                "operationId": "addUsingPOST_5",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "tenantUserDTO",
+                        "description": "tenantUserDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateTenantUserDTO",
+                            "originalRef": "CreateTenantUserDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User 用户管理"
+                ],
+                "summary": "更新用户信息",
+                "description": "返回的data为TenantUserDTO",
+                "operationId": "updateUsingPUT_5",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "tenantUserDTO",
+                        "description": "tenantUserDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TenantUserDTOReq",
+                            "originalRef": "TenantUserDTOReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User 用户管理"
+                ],
+                "summary": "删除用户信息",
+                "description": "返回的data为Boolean",
+                "operationId": "delUsingDELETE_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/user/detail/": {
+            "get": {
+                "tags": [
+                    "User 用户管理"
+                ],
+                "summary": "获取用户基本信息",
+                "description": "返回的data为TenantUserDTO",
+                "operationId": "detailUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "userId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/user/msg/code/": {
+            "post": {
+                "tags": [
+                    "sms-email-controller"
+                ],
+                "summary": "验证码",
+                "operationId": "captchaUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SmsMailDTO",
+                            "originalRef": "SmsMailDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/carbon-lens-enterprise/user/update_project/": {
+            "put": {
+                "tags": [
+                    "User 用户管理"
+                ],
+                "summary": "更新用户区域信息",
+                "description": "返回的data为TenantUserDTO",
+                "operationId": "updateUsingPUT_6",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access Token",
+                        "required": true,
+                        "type": "string",
+                        "x-example": "Bearer access_token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "dto",
+                        "description": "dto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUserProjectDTO",
+                            "originalRef": "UpdateUserProjectDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/接口返回对象«object»",
+                            "originalRef": "接口返回对象«object»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "AuthUserDTO": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string",
+                    "description": "账户名,全局唯一"
+                },
+                "createAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "创建时间"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "邮箱"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "是否可用"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "id主键"
+                },
+                "isAdmin": {
+                    "type": "boolean",
+                    "description": "是否为租户管理员"
+                },
+                "loginMethod": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "登录方式,0:全部,1:密码,2:SSO"
+                },
+                "nickname": {
+                    "type": "string",
+                    "description": "用户名"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "手机号"
+                },
+                "projectIds": {
+                    "type": "string",
+                    "description": "项目id, 多个英文逗号(\",\")分隔"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "备注"
+                },
+                "roleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "角色id, 新增或更新时必传"
+                },
+                "tenantId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "租户id,外键"
+                },
+                "userProjectDTOList": {
+                    "type": "array",
+                    "description": "用户的项目列表",
+                    "items": {
+                        "$ref": "#/definitions/UserProjectDTO",
+                        "originalRef": "UserProjectDTO"
+                    }
+                },
+                "userRoleDTO": {
+                    "description": "用户的角色",
+                    "$ref": "#/definitions/UserRoleDTO",
+                    "originalRef": "UserRoleDTO"
+                }
+            },
+            "title": "AuthUserDTO"
+        },
+        "CreateCurrencyDTO": {
+            "type": "object",
+            "required": [
+                "addList",
+                "currencyCode"
+            ],
+            "properties": {
+                "addList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CurrencyDTO",
+                        "originalRef": "CurrencyDTO"
+                    }
+                },
+                "currencyCode": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "CreateCurrencyDTO"
+        },
+        "CreateEmissionFactorDTO": {
+            "type": "object",
+            "required": [
+                "convertFactor",
+                "emissionSourceId",
+                "endAt",
+                "factor",
+                "startAt"
+            ],
+            "properties": {
+                "convertFactor": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "emissionSourceId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "endAt": {
+                    "type": "string"
+                },
+                "factor": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "startAt": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateEmissionFactorDTO"
+        },
+        "CreateEmissionSourceDTO": {
+            "type": "object",
+            "required": [
+                "chilledWaterFactor",
+                "convertFactor",
+                "emissionSourceName",
+                "emissionTypeName",
+                "factor",
+                "factorUnit",
+                "inputDeadline",
+                "inputFrequency",
+                "unit"
+            ],
+            "properties": {
+                "chilledWaterFactor": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "conditionType": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "convertFactor": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "emissionSourceName": {
+                    "type": "string"
+                },
+                "emissionTypeName": {
+                    "type": "string"
+                },
+                "factor": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "factorUnit": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "inputDeadline": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "inputFrequency": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "thresholdValue": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateEmissionSourceDTO"
+        },
+        "CreateProjectDTO": {
+            "type": "object",
+            "required": [
+                "cityId",
+                "floorList",
+                "projectName"
+            ],
+            "properties": {
+                "cityId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "floorList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Floor",
+                        "originalRef": "Floor"
+                    }
+                },
+                "projectName": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateProjectDTO"
+        },
+        "CreateRegionDTO": {
+            "type": "object",
+            "required": [
+                "name",
+                "type"
+            ],
+            "properties": {
+                "fatherId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "CreateRegionDTO"
+        },
+        "CreateTenantUserDTO": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string",
+                    "description": "账户名,全局唯一"
+                },
+                "createAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "创建时间"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "邮箱"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "是否可用"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "id主键"
+                },
+                "isAdmin": {
+                    "type": "boolean",
+                    "description": "是否为租户管理员"
+                },
+                "loginMethod": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "登录方式,0:全部,1:密码,2:SSO"
+                },
+                "nickname": {
+                    "type": "string",
+                    "description": "用户名"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "手机号"
+                },
+                "projectIds": {
+                    "type": "string",
+                    "description": "项目id, 多个英文逗号(\",\")分隔"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "备注"
+                },
+                "roleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "角色id, 新增或更新时必传",
+                    "minimum": 1,
+                    "exclusiveMinimum": false
+                },
+                "tenantId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "租户id,外键"
+                }
+            },
+            "title": "CreateTenantUserDTO"
+        },
+        "CurrencyDTO": {
+            "type": "object",
+            "required": [
+                "endAt",
+                "exchangeRate",
+                "startAt"
+            ],
+            "properties": {
+                "endAt": {
+                    "type": "string"
+                },
+                "exchangeRate": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "startAt": {
+                    "type": "string"
+                }
+            },
+            "title": "CurrencyDTO"
+        },
+        "CurrencyProjectDTO": {
+            "type": "object",
+            "required": [
+                "currencyCode"
+            ],
+            "properties": {
+                "addProjectList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "currencyCode": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "deleteProjectList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "title": "CurrencyProjectDTO"
+        },
+        "EditPasswordDTO": {
+            "type": "object",
+            "required": [
+                "code",
+                "confirmPassword",
+                "newPassword"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "minLength": 6,
+                    "maxLength": 6
+                },
+                "confirmPassword": {
+                    "type": "string",
+                    "description": "确认密码"
+                },
+                "newPassword": {
+                    "type": "string",
+                    "description": "新密码",
+                    "minLength": 6,
+                    "maxLength": 20
+                }
+            },
+            "title": "EditPasswordDTO"
+        },
+        "EmissionSourceDTO": {
+            "type": "object",
+            "properties": {
+                "emissionSourceId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "inputDeadline": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "inputFrequency": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "EmissionSourceDTO"
+        },
+        "EmissionTypeDTO": {
+            "type": "object",
+            "properties": {
+                "emissionTypeName": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "EmissionTypeDTO"
+        },
+        "ExamineDTO": {
+            "type": "object",
+            "required": [
+                "status",
+                "taskDataIds"
+            ],
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "pattern": "[37]"
+                },
+                "taskDataIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "title": "ExamineDTO"
+        },
+        "Floor": {
+            "type": "object",
+            "properties": {
+                "acreage": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "floor": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "stationNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "Floor"
+        },
+        "IPage«Role»": {
+            "type": "object",
+            "properties": {
+                "current": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "pages": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Role",
+                        "originalRef": "Role"
+                    }
+                },
+                "size": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "IPage«Role»"
+        },
+        "JwtTokenDTO": {
+            "type": "object",
+            "properties": {
+                "authUserDTO": {
+                    "description": "用户信息对象, 继承于TenantUserDTO",
+                    "$ref": "#/definitions/AuthUserDTO",
+                    "originalRef": "AuthUserDTO"
+                },
+                "distinguish": {
+                    "type": "string"
+                },
+                "jwtToken": {
+                    "type": "string",
+                    "description": "jwtToken, 返回的JWT，后续请求需在header中携带"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "JwtTokenDTO"
+        },
+        "LoginDTO": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "description": "密码"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "用户名"
+                }
+            },
+            "title": "LoginDTO"
+        },
+        "ProjectFloorResult": {
+            "type": "object",
+            "properties": {
+                "inputDeadline": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "inputFrequency": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ProjectFloorResult"
+        },
+        "ProjectResult": {
+            "type": "object",
+            "properties": {
+                "cityId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "cityName": {
+                    "type": "string"
+                },
+                "continentId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "continentName": {
+                    "type": "string"
+                },
+                "countryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "countryName": {
+                    "type": "string"
+                },
+                "floorList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Floor",
+                        "originalRef": "Floor"
+                    }
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectName": {
+                    "type": "string"
+                }
+            },
+            "title": "ProjectResult"
+        },
+        "ResetPasswordDTO": {
+            "type": "object",
+            "required": [
+                "code",
+                "confirmPassword",
+                "newPassword",
+                "username"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "minLength": 6,
+                    "maxLength": 6
+                },
+                "confirmPassword": {
+                    "type": "string",
+                    "description": "确认密码"
+                },
+                "newPassword": {
+                    "type": "string",
+                    "description": "新密码",
+                    "minLength": 6,
+                    "maxLength": 20
+                },
+                "username": {
+                    "type": "string",
+                    "pattern": "(\\w+@\\w+.\\w+)|(\\w+.\\w+@\\w+.\\w+)"
+                }
+            },
+            "title": "ResetPasswordDTO"
+        },
+        "Role": {
+            "type": "object",
+            "properties": {
+                "createAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "frontendPermissions": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "remark": {
+                    "type": "string"
+                },
+                "updateAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updateUser": {
+                    "type": "string"
+                },
+                "userCount": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "Role"
+        },
+        "RoleCreateDTO": {
+            "type": "object",
+            "properties": {
+                "createAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "创建时间"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "角色名称"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "备注"
+                },
+                "updateUser": {
+                    "type": "string",
+                    "description": "更新用户"
+                }
+            },
+            "title": "RoleCreateDTO"
+        },
+        "RoleDTO": {
+            "type": "object",
+            "properties": {
+                "createAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "创建时间"
+                },
+                "frontendPermissions": {
+                    "type": "array",
+                    "description": "前端界面权限,逗号分割的列表形式,或json格式",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "id主键"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "角色名称"
+                },
+                "userCount": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "用户数量"
+                }
+            },
+            "title": "RoleDTO"
+        },
+        "RoleUpdateDTO": {
+            "type": "object",
+            "properties": {
+                "frontendPermissions": {
+                    "type": "array",
+                    "description": "前端界面权限,逗号分割的列表形式,或json格式",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "id主键"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "角色名称"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "备注"
+                },
+                "updateAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "更新时间"
+                },
+                "updateUser": {
+                    "type": "string",
+                    "description": "更新用户"
+                }
+            },
+            "title": "RoleUpdateDTO"
+        },
+        "SmsMailDTO": {
+            "type": "object",
+            "required": [
+                "type",
+                "username"
+            ],
+            "properties": {
+                "type": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "username": {
+                    "type": "string",
+                    "pattern": "(\\w+@\\w+.\\w+)|(\\w+.\\w+@\\w+.\\w+)"
+                }
+            },
+            "title": "SmsMailDTO"
+        },
+        "TaskData": {
+            "type": "object",
+            "properties": {
+                "consumption": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "cost": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "emissionSourceId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "relation": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "relationCount": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "status": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "taskId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "TaskData"
+        },
+        "TenantUserDTOReq": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string",
+                    "description": "账户名,全局唯一"
+                },
+                "createAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "创建时间"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "邮箱"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "是否可用"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "id主键"
+                },
+                "isAdmin": {
+                    "type": "boolean",
+                    "description": "是否为租户管理员"
+                },
+                "loginMethod": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "登录方式,0:全部,1:密码,2:SSO"
+                },
+                "nickname": {
+                    "type": "string",
+                    "description": "用户名"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "手机号"
+                },
+                "projectIds": {
+                    "type": "string",
+                    "description": "项目id, 多个英文逗号(\",\")分隔"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "备注"
+                },
+                "roleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "角色id, 新增或更新时必传"
+                },
+                "tenantId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "租户id,外键"
+                },
+                "userProjectDTOList": {
+                    "type": "array",
+                    "description": "用户的项目列表",
+                    "items": {
+                        "$ref": "#/definitions/UserProjectDTO",
+                        "originalRef": "UserProjectDTO"
+                    }
+                },
+                "userRoleDTO": {
+                    "description": "用户的角色",
+                    "$ref": "#/definitions/UserRoleDTO",
+                    "originalRef": "UserRoleDTO"
+                }
+            },
+            "title": "TenantUserDTOReq"
+        },
+        "TenantUserDTORes": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string",
+                    "description": "账户名,全局唯一"
+                },
+                "createAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "创建时间"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "邮箱"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "是否可用"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "id主键"
+                },
+                "isAdmin": {
+                    "type": "boolean",
+                    "description": "是否为租户管理员"
+                },
+                "loginMethod": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "登录方式,0:全部,1:密码,2:SSO"
+                },
+                "nickname": {
+                    "type": "string",
+                    "description": "用户名"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "手机号"
+                },
+                "projectIds": {
+                    "type": "string",
+                    "description": "项目id, 多个英文逗号(\",\")分隔"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "备注"
+                },
+                "roleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "角色id, 新增或更新时必传"
+                },
+                "tenantId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "租户id,外键"
+                },
+                "userProjectDTOList": {
+                    "type": "array",
+                    "description": "用户的项目列表",
+                    "items": {
+                        "$ref": "#/definitions/UserProjectDTO",
+                        "originalRef": "UserProjectDTO"
+                    }
+                },
+                "userRoleDTO": {
+                    "description": "用户的角色",
+                    "$ref": "#/definitions/UserRoleDTO",
+                    "originalRef": "UserRoleDTO"
+                }
+            },
+            "title": "TenantUserDTORes"
+        },
+        "UpdateCurrencyDTO": {
+            "type": "object",
+            "required": [
+                "currencyCode"
+            ],
+            "properties": {
+                "addList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CurrencyDTO",
+                        "originalRef": "CurrencyDTO"
+                    }
+                },
+                "currencyCode": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "deleteIdList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "updateList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CurrencyDTO",
+                        "originalRef": "CurrencyDTO"
+                    }
+                }
+            },
+            "title": "UpdateCurrencyDTO"
+        },
+        "UpdateEmissionFactorDTO": {
+            "type": "object",
+            "required": [
+                "convertFactor",
+                "endAt",
+                "factor",
+                "id",
+                "startAt"
+            ],
+            "properties": {
+                "convertFactor": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "endAt": {
+                    "type": "string"
+                },
+                "factor": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "startAt": {
+                    "type": "string"
+                }
+            },
+            "title": "UpdateEmissionFactorDTO"
+        },
+        "UpdateEmissionSourceProjectDTO": {
+            "type": "object",
+            "required": [
+                "id",
+                "projectList"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProjectFloorResult",
+                        "originalRef": "ProjectFloorResult"
+                    }
+                }
+            },
+            "title": "UpdateEmissionSourceProjectDTO"
+        },
+        "UpdateEmissionType": {
+            "type": "object",
+            "properties": {
+                "addList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EmissionTypeDTO",
+                        "originalRef": "EmissionTypeDTO"
+                    }
+                },
+                "updateList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EmissionTypeDTO",
+                        "originalRef": "EmissionTypeDTO"
+                    }
+                }
+            },
+            "title": "UpdateEmissionType"
+        },
+        "UpdateProjectDTO": {
+            "type": "object",
+            "required": [
+                "projectId"
+            ],
+            "properties": {
+                "addList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Floor",
+                        "originalRef": "Floor"
+                    }
+                },
+                "deleteList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "updateList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Floor",
+                        "originalRef": "Floor"
+                    }
+                }
+            },
+            "title": "UpdateProjectDTO"
+        },
+        "UpdateProjectEmissionSourceDTO": {
+            "type": "object",
+            "properties": {
+                "emissionSourceList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EmissionSourceDTO",
+                        "originalRef": "EmissionSourceDTO"
+                    }
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "UpdateProjectEmissionSourceDTO"
+        },
+        "UpdateRegionDTO": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "type"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "UpdateRegionDTO"
+        },
+        "UpdateTaskFillDTO": {
+            "type": "object",
+            "required": [
+                "month",
+                "year"
+            ],
+            "properties": {
+                "addList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaskData",
+                        "originalRef": "TaskData"
+                    }
+                },
+                "deleteIdList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "month": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "updateList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaskData",
+                        "originalRef": "TaskData"
+                    }
+                },
+                "year": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "UpdateTaskFillDTO"
+        },
+        "UpdateUserProjectDTO": {
+            "type": "object",
+            "required": [
+                "userId"
+            ],
+            "properties": {
+                "projectIds": {
+                    "type": "string",
+                    "description": "项目ids"
+                },
+                "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "用户id"
+                }
+            },
+            "title": "UpdateUserProjectDTO"
+        },
+        "UrgeDTO": {
+            "type": "object",
+            "required": [
+                "projectIds"
+            ],
+            "properties": {
+                "projectIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "title": "UrgeDTO"
+        },
+        "UserProjectDTO": {
+            "type": "object",
+            "properties": {
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "项目id"
+                },
+                "projectName": {
+                    "type": "string",
+                    "description": "项目名称"
+                },
+                "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "用户id"
+                }
+            },
+            "title": "UserProjectDTO"
+        },
+        "UserRoleDTO": {
+            "type": "object",
+            "properties": {
+                "frontendPermissions": {
+                    "type": "array",
+                    "description": "角色权限",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "roleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "角色id"
+                },
+                "roleName": {
+                    "type": "string",
+                    "description": "角色名称"
+                },
+                "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "用户id"
+                }
+            },
+            "title": "UserRoleDTO"
+        },
+        "接口返回对象«IPage«Role»»": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "返回代码"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "返回处理消息"
+                },
+                "result": {
+                    "description": "返回数据对象",
+                    "$ref": "#/definitions/IPage«Role»",
+                    "originalRef": "IPage«Role»"
+                },
+                "success": {
+                    "type": "boolean",
+                    "description": "成功标志"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "时间戳"
+                }
+            },
+            "title": "接口返回对象«IPage«Role»»",
+            "description": "接口返回对象"
+        },
+        "接口返回对象«JwtTokenDTO»": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "返回代码"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "返回处理消息"
+                },
+                "result": {
+                    "description": "返回数据对象",
+                    "$ref": "#/definitions/JwtTokenDTO",
+                    "originalRef": "JwtTokenDTO"
+                },
+                "success": {
+                    "type": "boolean",
+                    "description": "成功标志"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "时间戳"
+                }
+            },
+            "title": "接口返回对象«JwtTokenDTO»",
+            "description": "接口返回对象"
+        },
+        "接口返回对象«List«RoleDTO»»": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "返回代码"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "返回处理消息"
+                },
+                "result": {
+                    "type": "array",
+                    "description": "返回数据对象",
+                    "items": {
+                        "$ref": "#/definitions/RoleDTO",
+                        "originalRef": "RoleDTO"
+                    }
+                },
+                "success": {
+                    "type": "boolean",
+                    "description": "成功标志"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "时间戳"
+                }
+            },
+            "title": "接口返回对象«List«RoleDTO»»",
+            "description": "接口返回对象"
+        },
+        "接口返回对象«RoleDTO»": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "返回代码"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "返回处理消息"
+                },
+                "result": {
+                    "description": "返回数据对象",
+                    "$ref": "#/definitions/RoleDTO",
+                    "originalRef": "RoleDTO"
+                },
+                "success": {
+                    "type": "boolean",
+                    "description": "成功标志"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "时间戳"
+                }
+            },
+            "title": "接口返回对象«RoleDTO»",
+            "description": "接口返回对象"
+        },
+        "接口返回对象«boolean»": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "返回代码"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "返回处理消息"
+                },
+                "result": {
+                    "type": "boolean",
+                    "description": "返回数据对象"
+                },
+                "success": {
+                    "type": "boolean",
+                    "description": "成功标志"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "时间戳"
+                }
+            },
+            "title": "接口返回对象«boolean»",
+            "description": "接口返回对象"
+        },
+        "接口返回对象«object»": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "返回代码"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "返回处理消息"
+                },
+                "result": {
+                    "type": "object",
+                    "description": "返回数据对象"
+                },
+                "success": {
+                    "type": "boolean",
+                    "description": "成功标志"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "时间戳"
+                }
+            },
+            "title": "接口返回对象«object»",
+            "description": "接口返回对象"
+        }
+    }
+}

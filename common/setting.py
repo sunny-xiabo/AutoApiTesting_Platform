@@ -59,4 +59,4 @@ class ConfigHandler:
 
 
 if __name__ == '__main__':
-    print(ConfigHandler.report_html_test_case_path)
+    print(ConfigHandler.file_path)

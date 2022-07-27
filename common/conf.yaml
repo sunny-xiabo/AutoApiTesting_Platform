@@ -14,6 +14,10 @@ host: http://10.5.1.18:31212/api/carbon-lens-enterprise
 # 域名2，支持多个域名配置
 app_host:
 
+
+# Swagger地址
+swagger_url: http://10.5.1.18:31212/api/carbon-lens-enterprise/v2/api-docs
+
 # 实时更新用例内容，False时，已生成的代码不会在做变更
 # 设置为True的时候，修改yaml文件的用例，代码中的内容会实时更新
 real_time_update_test_cases: False

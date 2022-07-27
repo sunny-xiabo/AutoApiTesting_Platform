@@ -41,9 +41,14 @@ def get_mirror_url():
     mirror_url = conf['mirror_source']
     return mirror_url
 
+def get_swagger_url():
+    """获取swagger的URL"""
+    swagger_url = conf['swagger_url']
+    return swagger_url
+
 
 project_name = conf['ProjectName'][0]
 tester_name = conf['TesterName']
 
 if __name__ == '__main__':
-    print(conf['MySqlDB']['switch'])
+    print(get_swagger_url())
