@@ -30,7 +30,7 @@ tec_login_01:
 
   requestType: json
   # 是否执行，空或者 true 都会执行
-  is_run:
+  is_run: false
   # data 数据
   # 上传文件（只需文件）
   data:

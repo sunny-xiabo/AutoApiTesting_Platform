@@ -20,7 +20,7 @@ add_EmissionSource_01:
 
   requestType: json
   # 是否执行，空或者 true 都会执行
-  is_run: false
+  is_run:
   # data 数据
   data:
     emissionTypeName: 电力
@@ -55,9 +55,8 @@ add_EmissionSource_01:
       AssertType:
   # sql 语句查询
   sql:
-    - SELECT emission_type_name,scope FROM emission_type limit 1;
   setup_sql:
-    - SELECT emission_type_name,scope FROM emission_type limit 1;
+    - SELECT emission_type_name,scope FROM emission_type ORDER BY RANDOM() limit 1;
 
 add_EmissionSource_02:
   # 主机路径,从conf.yaml获取
